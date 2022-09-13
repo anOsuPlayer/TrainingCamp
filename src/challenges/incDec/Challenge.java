@@ -6,7 +6,7 @@ public class Challenge {
 	
 	private static int[] digits(int number) {
 		int[] digits = new int[Integer.toString(number).length()];
-		for (int i = 1; i <= digits.length; i++) {
+		for (int i = 0; i <= digits.length; i++) {
 			digits[digits.length-i] = (int) ((number % Math.pow(10, i)) / Math.pow(10, i-1));
 		}
 		return digits;
