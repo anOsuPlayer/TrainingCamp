@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/TR/xhtml1/strict"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>La poltrona di Korrot</title></head><body><h4>Selezioni regionali 2005</h4><h1>La poltrona di Korrot
+	(<samp>korrot</samp>)</h1><h2>Difficoltà D = 3</h2><h3>Il problema</h3><p>
+Il robot Korrot deve trovare una poltrona su cui sedersi. Korrot vive
+in una scacchiera <EM>N</EM>x<EM>M</EM>, con le righe numerate da 1 a
+<EM>N</EM> (dal basso verso l'alto) e le colonne numerate da 1 a
+<EM>M</EM> (da sinistra a destra). Parte dalla riga più in basso (la
+riga 1) e deve raggiungere la poltrona sulla riga più in alto (la riga
+<EM>N</EM>). Korrot può spostarsi in tutte le direzioni tranne che in
+diagonale. La figura sottostante illustra una possibile disposizione
+iniziale di Korrot (K) e della poltrona (P) in una scacchiera con
+<EM>N</EM> = 5 e <EM>M</EM> = 6.
+</p><p>
+<CENTER>
+<IMG SRC="fig1.gif"></IMG>
+<BR></BR>
+Figura 1. Percorso: <CODE>AAAAS</CODE> (poltrona)
+</CENTER>
+</p><p>
+Korrot ha un modo particolare di raggiungere l'ambita
+poltrona. Parte da una delle caselle sulla riga 1 e procede verso
+l'alto fino alla riga <EM>N</EM>, poi prosegue il suo percorso verso
+destra o verso sinistra in direzione della poltrona. Nell'esempio
+mostrato, il percorso scelto da Korrot prevede 4 passi verso l'alto e
+uno verso sinistra ed è rappresentato dalle lettere
+<samp>AAAAS</samp>.
+</p><p>
+Purtroppo, Korrott ha una nemica di nome Maggie che dissemina la 
+scacchiera di scomodi ostacoli. Se Korrot si trova di fronte a un 
+ostacolo, deve aggirarlo. 
+ Nell'affrontare gli ostacoli bisogna ricordare che, per come è programmato, 
+Korrot prova sempre ad andare 
+verso l'alto per raggiungere l'ultima riga e poi, muovendosi su questa 
+(a destra o sinistra), prova a raggiungere la poltrona.
+Ecco quindi come si comporta Korrot:
+</p><p>
+Se incontra un ostacolo mentre cerca di andare verso l'alto, Korrot 
+devia a destra. Se però si trova nella colonna più a destra (la colonna 
+<EM>M</EM>) 
+devia a sinistra per non cadere dalla scacchiera. In entrambi i casi tenta di 
+risalire non appena può.
+Se Korrot è già arrivato alla riga più in alto, evita gli ostacoli 
+con una mossa verso il basso (spostandosi quindi temporaneamente sulla 
+riga <EM>N-1</EM>) e rientra sulla riga <EM>N</EM> appena possibile (eventualmente per 
+sedersi sull'ambita poltrona).
+Se Korrot trova un ostacolo nella casella dove vorrebbe deviare, va in 
+uno stato di confusione totale e rinuncia per sempre all'amata poltrona. 
+Inoltre Korrot rinuncia alla poltrona anche se è costretto a ritornare 
+sui suoi passi.
+</p><p>
+Ecco alcuni esempi del comportamento di Korrot (gli ostacoli sono 
+rappresentati dal simbolo 'O', la casella finale presenta il simbolo P sottolineato).
+</p><CENTER>
+<IMG SRC="fig2.gif"></IMG>
+<BR></BR>
+Figura 2. Percorso: <CODE>ADAADDAADA</CODE> (poltrona)
+</CENTER><CENTER>
+<IMG SRC="fig3.gif"></IMG>
+<BR></BR>
+Figura 3. Percorso: <CODE>DAA</CODE> (confusione: è programmato per andare a 
+destra ma a destra trova un ostacolo)
+</CENTER><CENTER>
+<IMG SRC="fig4.gif"></IMG>
+<BR></BR>
+Figura 4. Percorso: <CODE>SAAD</CODE>
+	(confusione: costretto a tornare sui propri passi)
+</CENTER><CENTER>
+<IMG SRC="fig5.gif"></IMG>
+<BR></BR>
+Figura 5. Percorso: <CODE>AAAASBSSSAS</CODE> (poltrona)
+</CENTER><CENTER>
+<IMG SRC="fig6.gif"></IMG>
+<BR></BR>
+Figura 6. Percorso: <CODE>AAAASBSS</CODE> (confusione: non è sull'ultima riga 
+e quindi non può andare in basso)
+</CENTER><p>Scrivere un programma che riproduca il comportamento di Korrot
+stampandone il corrispondente percorso.</p><h3>Dati di input</h3><p>
+Il file <SAMP>input.txt</SAMP> contiene sulla prima riga in ingresso 
+i due interi positivi <EM>N</EM> (il numero delle righe nella scacchiera) e
+<EM>M</EM> (il numero delle colonne nella scacchiera), 
+separati da uno spazio. 
+</p><p>
+La seconda riga del file contiene le posizioni iniziali, 
+rispettivamente di Korrot e della poltrona, rappresentate ognuna da un solo 
+intero positivo (soltanto l'indice di colonna nella scacchiera:
+sappiamo che la riga nella scacchiera è <EM>1</EM> per 
+Korrott e <EM>N</EM> per la poltrona).
+</p><p>
+Ciascuna delle righe seguenti nel file è riferita ad un ostacolo. Su
+ciascuna riga del file
+si trovano due interi positivi (indice di riga e indice di colonna
+nella scacchiera, separati da uno spazio) che 
+rappresentano la posizione dell'ostacolo considerato.
+</p><h3>Dati di output</h3><p>
+Il programma, dopo aver letto l'input, deve scrivere in output due
+righe.
+</p><p>
+Sulla prima riga le mosse fatte da Korrot, usando le abbreviazioni
+	<SAMP>A</SAMP>=alto,
+	<SAMP>B</SAMP>=Basso,
+	<SAMP>D</SAMP>=Destra,
+	<SAMP>S</SAMP>=Sinistra.
+</p><p>
+Sulla riga successiva, il programma deve
+scrivere il risultato finale:
+	<SAMP>P</SAMP> per "Poltrona"	
+	oppure
+	<SAMP>C</SAMP> per "Confusione".
+</p><h3>Assunzioni</h3><ul><li> 1 &lt; M, N &lt; 210 </li></ul><h3>Esempi di input/output</h3><p></p><table border="1"><tr><td style="padding-left: 1em; padding-right: 1em; text-align: center">File <samp>input.txt</samp></td><td style="padding-left: 1em; padding-right: 1em; text-align: center">File <samp>output.txt</samp></td></tr><tr><td style="padding: 1em" valign="top"><pre>
+5 6
+3 2
+0 0
+</pre></td><td style="padding: 1em" valign="top"><pre>
+AAAAS
+P
+</pre></td></tr></table><br></br><table border="1"><tr><td style="padding-left: 1em; padding-right: 1em; text-align: center">File <samp>input.txt</samp></td><td style="padding-left: 1em; padding-right: 1em; text-align: center">File <samp>output.txt</samp></td></tr><tr><td style="padding: 1em" valign="top"><pre>
+7 8
+2 6
+3 2
+5 3
+5 4
+7 4
+7 5
+0 0
+</pre></td><td style="padding: 1em" valign="top"><pre>
+ADAADDAADA
+P
+</pre></td></tr></table><br></br><table border="1"><tr><td style="padding-left: 1em; padding-right: 1em; text-align: center">File <samp>input.txt</samp></td><td style="padding-left: 1em; padding-right: 1em; text-align: center">File <samp>output.txt</samp></td></tr><tr><td style="padding: 1em" valign="top"><pre>
+5 10
+7 7
+2 7
+3 9
+4 8
+4 7
+0 0
+</pre></td><td style="padding: 1em" valign="top"><pre>
+DAA
+C
+</pre></td></tr></table><br></br><table border="1"><tr><td style="padding-left: 1em; padding-right: 1em; text-align: center">File <samp>input.txt</samp></td><td style="padding-left: 1em; padding-right: 1em; text-align: center">File <samp>output.txt</samp></td></tr><tr><td style="padding: 1em" valign="top"><pre>
+5 8
+8 2
+2 8
+4 7
+4 8
+0 0
+</pre></td><td style="padding: 1em" valign="top"><pre>
+SAAD
+C
+</pre></td></tr></table><br></br><table border="1"><tr><td style="padding-left: 1em; padding-right: 1em; text-align: center">File <samp>input.txt</samp></td><td style="padding-left: 1em; padding-right: 1em; text-align: center">File <samp>output.txt</samp></td></tr><tr><td style="padding: 1em" valign="top"><pre>
+5 7
+6 1
+5 3
+5 4
+0 0
+</pre></td><td style="padding: 1em" valign="top"><pre>
+AAAASBSSSAS
+P
+</pre></td></tr></table><br></br><h3>Note</h3><ul><li>I cinque esempi corrispondono alle Figure 1--5.</li><li>Korrot è un personaggio completamente inventato: non esiste
+alcuna creatura che strisci alla ricerca di una poltrona ed eviti gli
+ostacoli svoltando sempre a destra.</li></ul></body></html>

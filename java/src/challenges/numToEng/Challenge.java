@@ -35,6 +35,6 @@ public class Challenge {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(numToEng(869));
+		System.out.println(numToEng(8));
 	}
 }
